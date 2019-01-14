@@ -20,7 +20,10 @@ function getCould(news) {
       }
       console.warn('new_cloud_update',new_cloud);
     }
-    return  Object.values(new_cloud).filter(w => !stopwords.includes(w.text));
+    return  Object
+        .values(new_cloud)
+        .filter(w => !stopwords.includes(w.text))
+        .sort(function(a, b){return b.weight - a.weight });
 }
 
 module.exports = async function (context, req) {
